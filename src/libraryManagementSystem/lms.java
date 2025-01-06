@@ -32,6 +32,7 @@ class Book {
 class Library {
     private List<Book> books = new ArrayList<>();
 
+    //library methods
     public void addBook(Book book) {
         books.add(book);
     }

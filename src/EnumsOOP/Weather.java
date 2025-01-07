@@ -26,3 +26,5 @@ public class Weather {
 }
 
 //Challenge : Add seasonal activities
+
+//Hint : SPRING("Warm Season", List.of("Gardening, Hiking)),....

@@ -25,6 +25,10 @@ class Book {
     public boolean isIssued() {
         return  isIssued;
     }
+
+    public void setIssued(boolean issued) {
+        isIssued = issued;
+    }
 }
 
 //library class
@@ -47,7 +51,6 @@ class Library {
         }
         return  null;
     }
-    //
 
     public void displayAllBooks() {
         for (Book book : books ) {
@@ -57,6 +60,33 @@ class Library {
         }
     }
 }
+
+class  User {
+    private String name;
+    private List<Book> issuedBooks = new ArrayList<>();
+
+    public User(String name) {
+        this.name = name;
+    }
+
+    public void issuedBook(Book book) {
+        issuedBooks.add(book);
+        book.setIssued(false);
+    }
+    public void returnBook(Book book) {
+        issuedBooks.remove(book);
+        book.setIssued(false);
+    }
+
+    public void displayIssuedBooks() {
+        System.out.println(name+"'s Issued Books: ");
+        for(Book book: issuedBooks) {
+            System.out.println(book.getTitle());
+        }
+    }
+
+}
+
 
 public class lms {
 }

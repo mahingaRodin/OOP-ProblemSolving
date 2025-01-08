@@ -93,5 +93,15 @@ public class lms {
         Library library = new Library();
         User user = new User("Bob");
 
+        //adding books to the library
+        library.addBook(new Book("1984", "George Orwell"));
+        library.addBook(new Book("To Kill a Mockingbird", "Harper Lee"));
+        library.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald"));
+
+        //displaying all books
+        library.displayAllBooks();
+
+
+
     }
 }

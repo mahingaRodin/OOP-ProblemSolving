@@ -87,6 +87,11 @@ class  User {
 
 }
 
-
+//adding the main class implementation
 public class lms {
+    public static void main(String[] args) {
+        Library library = new Library();
+        User user = new User("Bob");
+
+    }
 }

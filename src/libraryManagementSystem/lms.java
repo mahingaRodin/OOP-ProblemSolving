@@ -101,6 +101,22 @@ public class lms {
         //displaying all books
         library.displayAllBooks();
 
+        //issued Books
+        Book bookToIssue = library.searchItem("1984");
+        if(bookToIssue != null) {
+            user.issuedBook(bookToIssue);
+            System.out.println("Issued: " + bookToIssue.getTitle());
+        }
+
+        //display issued books
+        user.displayIssuedBooks();
+
+        //return a book
+        user.returnBook(bookToIssue);
+        System.out.println("Returned: " + bookToIssue.getTitle());
+
+        //display available books again
+        library.displayAllBooks();
 
 
     }

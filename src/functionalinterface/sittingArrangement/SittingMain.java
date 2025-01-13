@@ -2,8 +2,11 @@ package functionalinterface.sittingArrangement;
 
 public class SittingMain {
     public static void main(String[] args) {
-        Boys boys = new Boys();
-        Girls girls = new Girls();
+        Runnable Boys = new Boys();
+        Runnable Girls = new Girls();
+
+        Thread boys = new Thread(Boys);
+        Thread girls = new Thread(Girls);
         boys.start();
         girls.start();
     }

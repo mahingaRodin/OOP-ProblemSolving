@@ -2,24 +2,16 @@ package functionalinterface.sittingArrangement;
 
 public class SittingMain {
     public static void main(String[] args) {
+
+        Counter c = new Counter();
         Runnable Boys = () -> {
-            for(int i=0; i<100; i++) {
-                System.out.println("Boy");
-                try {
-                    Thread.sleep(5);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            for(int i=0; i<1000; i++) {
+                c.increment();
             }
         };
         Runnable Girls = () -> {
-            for(int i=0; i<100; i++) {
-                System.out.println("Girl");
-                try {
-                    Thread.sleep(5);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
+            for(int i=0; i<1000; i++) {
+                c.increment();
             }
         };
 
@@ -27,5 +19,12 @@ public class SittingMain {
         Thread girls = new Thread(Girls);
         boys.start();
         girls.start();
+        try{
+            boys.join();
+            girls.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("current value: " + c.counter);
     }
 }

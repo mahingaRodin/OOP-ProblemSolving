@@ -52,12 +52,28 @@ class TeacherA implements Runnable {
     }
     }
 
+    class Task implements Runnable {
+    @Override
+        public void run() {
+        System.out.println("Task thread has started ");
+        for(int i =0 ; i<=100; i++) {
+            System.out.println("Task: " +i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println("Teacher thread has completed");
+    }
+    }
 
 public class exeFrame {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
         executor.execute(new BoyA());
         executor.execute(new GirlA());
+        executor.execute(new Task());
         executor.execute(new TeacherA());
         executor.shutdown();
     }

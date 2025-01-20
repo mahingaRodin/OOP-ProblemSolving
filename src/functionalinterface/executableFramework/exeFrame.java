@@ -1,6 +1,9 @@
 package functionalinterface.executableFramework;
 
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 class BoyA implements Runnable {
     @Override
     public void run() {
@@ -35,4 +38,10 @@ class GirlA implements Runnable {
 
 
 public class exeFrame {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(new BoyA());
+        executor.execute(new GirlA());
+        executor.shutdown();
+    }
 }

@@ -55,13 +55,10 @@ class TeacherA implements Runnable {
 
 public class exeFrame {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(3);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         executor.execute(new BoyA());
         executor.execute(new GirlA());
         executor.execute(new TeacherA());
         executor.shutdown();
-        for(int i=0; i<5; i++) {
-            System.out.println("main values: "+i );
-        }
     }
 }

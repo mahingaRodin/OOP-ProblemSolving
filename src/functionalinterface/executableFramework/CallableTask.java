@@ -19,12 +19,13 @@ class CallableTaskA implements Callable<String> {
 
 public class CallableTask{
     public static void main(String []a) throws ExecutionException, InterruptedException {
-        ExecutorService executor = Executors.newFixedThreadPool(1);
+        ExecutorService executor = Executors.newFixedThreadPool(3);
         List<CallableTaskA> messages = new ArrayList<>();
         messages.add(new CallableTaskA("Hello Year 2 A"));
         messages.add(new CallableTaskA("Hello Year 2 B"));
         messages.add(new CallableTaskA("Hello Year 2 C"));
         messages.add(new CallableTaskA("Hello Year 2 D"));
+        messages.add(new CallableTaskA("Hello Rca"));
 
         List<Future<String>> msg = new ArrayList<>();
 

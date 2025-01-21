@@ -1,80 +1,36 @@
 package functionalinterface.executableFramework;
 
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-class BoyA implements Runnable {
-    @Override
-    public void run() {
-        System.out.println("Boy thread has started. ");
-        for(int i=0; i<=100; i++) {
-            System.out.println("Boy: "+i);
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        System.out.println("Boy thread has completed!");
-    }
-}
+class Task implements Runnable {
+    int num;
 
-class GirlA implements Runnable {
-    @Override
-    public void run() {
-        System.out.println("Girl thread has started. ");
-        for(int i=0; i<=100; i++) {
-            System.out.println("Girl: "+i);
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        System.out.println("Girl thread has completed!");
-    }
-}
-
-class TeacherA implements Runnable {
-    @Override
-    public void run() {
-        System.out.println("Teacher thread has started. ");
-        for(int i=0; i<=100; i++) {
-            System.out.println("Teacher: "+i);
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        System.out.println("Teacher thread has completed!");
-    }
+    public Task(int num) {
+        this.num = num;
     }
 
-    class Task implements Runnable {
     @Override
-        public void run() {
-        System.out.println("Task thread has started ");
-        for(int i =0 ; i<=100; i++) {
-            System.out.println("Task: " +i);
+    public void run() {
+        System.out.println("Task number: "+num+" has started");
+        for(int i = num; i < num*5; i++) {
+            System.out.print("  "+num);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println("Teacher thread has completed");
+        System.out.println("Task number: "+num+" has completed");
     }
-    }
+}
 
 public class exeFrame {
     public static void main(String[] args) {
-        ExecutorService executor = Executors.newFixedThreadPool(3);
-        executor.execute(new BoyA());
-        executor.execute(new GirlA());
-        executor.execute(new Task());
-        executor.execute(new TeacherA());
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        for(int i = 1; i <= 10; i++) {
+            executor.execute(new Task(i));
+        }
         executor.shutdown();
     }
 }

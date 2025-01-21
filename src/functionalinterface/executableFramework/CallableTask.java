@@ -21,5 +21,7 @@ public class CallableTask{
         Future<String> msg = executor.submit(new CallableTaskA("Hello Year 2 A"));
         String message = msg.get();
         System.out.println("message is: " +message);
+        executor.shutdown();
+        System.out.println("hy");
     }
 }

@@ -1,41 +1,38 @@
 package functionalinterface.executableFramework;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.*;
 
 class CallableTaskA implements Callable<String> {
     String message;
+
     public CallableTaskA(String message) {
         this.message = message;
     }
 
     @Override
     public String call() throws Exception {
+        // Simulate some processing time
+        Thread.sleep((long) (Math.random() * 1000)); // Random sleep to simulate work
         return message;
     }
 }
 
-
-public class CallableTask{
-    public static void main(String []a) throws ExecutionException, InterruptedException {
+public class CallableTask {
+    public static void main(String[] a) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(3);
-        List<CallableTaskA> messages = new ArrayList<>();
-        messages.add(new CallableTaskA("Hello Year 2 A"));
-        messages.add(new CallableTaskA("Hello Year 2 B"));
-        messages.add(new CallableTaskA("Hello Year 2 C"));
-        messages.add(new CallableTaskA("Hello Year 2 D"));
-        messages.add(new CallableTaskA("Hello Rca"));
 
-        List<Future<String>> msg = new ArrayList<>();
+        // Using invokeAny with a list of tasks
+        String result = executor.invokeAny(List.of(
+                new CallableTaskA("Hello Year 2 A"),
+                new CallableTaskA("Hello Year 2 B"),
+                new CallableTaskA("Hello Year 2 C"),
+                new CallableTaskA("Hello Year 2 D"),
+                new CallableTaskA("Hello Rca")
+        ));
 
-        for (CallableTaskA message : messages) {
-            msg.add(executor.submit(message));
-        }
-        for(Future<String> megs : msg ) {
-            System.out.println("Message: "+megs.get());
-        }
         executor.shutdown();
+        System.out.println("First Completed Task Message: " + result);
         System.out.println("Rodin Did This !");
     }
 }

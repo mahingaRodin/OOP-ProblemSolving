@@ -1,5 +1,7 @@
 package functionalinterface.executableFramework;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 
 class CallableTaskA implements Callable<String> {
@@ -18,10 +20,21 @@ class CallableTaskA implements Callable<String> {
 public class CallableTask{
     public static void main(String []a) throws ExecutionException, InterruptedException {
         ExecutorService executor = Executors.newFixedThreadPool(1);
-        Future<String> msg = executor.submit(new CallableTaskA("Hello Year 2 A"));
-        String message = msg.get();
-        System.out.println("message is: " +message);
+        List<CallableTaskA> messages = new ArrayList<>();
+        messages.add(new CallableTaskA("Hello Year 2 A"));
+        messages.add(new CallableTaskA("Hello Year 2 B"));
+        messages.add(new CallableTaskA("Hello Year 2 C"));
+        messages.add(new CallableTaskA("Hello Year 2 D"));
+
+        List<Future<String>> msg = new ArrayList<>();
+
+        for (CallableTaskA message : messages) {
+            msg.add(executor.submit(message));
+        }
+        for(Future<String> msgs : msg ) {
+            System.out.println("Message: "+msgs.get());
+        }
         executor.shutdown();
-        System.out.println("hy");
+        System.out.println("Rodin Did This !");
     }
 }

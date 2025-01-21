@@ -31,8 +31,8 @@ public class CallableTask{
         for (CallableTaskA message : messages) {
             msg.add(executor.submit(message));
         }
-        for(Future<String> msgs : msg ) {
-            System.out.println("Message: "+msgs.get());
+        for(Future<String> megs : msg ) {
+            System.out.println("Message: "+megs.get());
         }
         executor.shutdown();
         System.out.println("Rodin Did This !");

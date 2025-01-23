@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/osgi/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/osgi/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-examples/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-examples/src/main/ruby/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-examples/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-excelant/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-excelant/src/poi-ant-contrib/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-excelant/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-integration/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-ooxml-lite-agent/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-ooxml/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-ooxml/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-scratchpad/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi-scratchpad/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../../../../apache-poi-src-5.4.0-20241229/lib/poi/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

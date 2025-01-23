@@ -7,9 +7,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class EmployeeData {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/EmployeeDB";
-    private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/EmployeeDB";
+    private static final String USER = "postgres";
+    private static final String PASS = "rodin123";
     private static final String FILE_PATH = "C:\\Users\\user\\OneDrive\\Desktop\\employee.xlsx";
     private static final Object lock = new Object();
 
@@ -28,10 +28,10 @@ public class EmployeeData {
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
                  Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery(
-                         "SELECT e.EmployeeID, e.FirstName, e.LastName, e.Email, e.Phone, e.HireDate, " +
-                                 "e.JobTitle, e.Salary, d.DepartmentName " +
-                                 "FROM Employees e " +
-                                 "LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID")) {
+                         "SELECT e.\"employeeid\", e.\"firstname\", e.\"lastname\", e.\"email\", e.\"phone\", e.\"hiredate\", " +
+                                 "e.\"jobtitle\", e.\"salary\", d.\"departmentname\" " +
+                                 "FROM \"employees\" e " +
+                                 "LEFT JOIN \"departments\" d ON e.\"departmentid\" = d.\"departmentid\"")) {
 
                 StringBuilder data = new StringBuilder();
                 data.append("Employee ID,First Name,Last Name,Email,Phone,Hire Date,Job Title,Salary,Department Name\n");

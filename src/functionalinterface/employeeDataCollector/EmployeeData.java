@@ -1,5 +1,8 @@
 package functionalinterface.employeeDataCollector;
 
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
@@ -33,23 +36,47 @@ public class EmployeeData {
                                  "FROM \"employees\" e " +
                                  "LEFT JOIN \"departments\" d ON e.\"departmentid\" = d.\"departmentid\"")) {
 
-                StringBuilder data = new StringBuilder();
-                data.append("Employee ID,First Name,Last Name,Email,Phone,Hire Date,Job Title,Salary,Department Name\n");
+                Workbook workbook;
+                Sheet sheet;
 
-                while (resultSet.next()) {
-                    data.append(resultSet.getInt("EmployeeID")).append(",")
-                            .append(resultSet.getString("FirstName")).append(",")
-                            .append(resultSet.getString("LastName")).append(",")
-                            .append(resultSet.getString("Email")).append(",")
-                            .append(resultSet.getString("Phone")).append(",")
-                            .append(resultSet.getDate("HireDate")).append(",")
-                            .append(resultSet.getString("JobTitle")).append(",")
-                            .append(resultSet.getBigDecimal("Salary")).append(",")
-                            .append(resultSet.getString("DepartmentName")).append("\n");
+                // If the file already exists, open it, otherwise create a new workbook
+                try {
+                    workbook = WorkbookFactory.create(new java.io.File(FILE_PATH));
+                    sheet = workbook.getSheetAt(0);
+                } catch (IOException e) {
+                    workbook = new XSSFWorkbook();
+                    sheet = workbook.createSheet("Employees");
+
+                    // Add header row
+                    Row headerRow = sheet.createRow(0);
+                    String[] headers = {"Employee ID", "First Name", "Last Name", "Email", "Phone", "Hire Date",
+                            "Job Title", "Salary", "Department Name"};
+                    for (int i = 0; i < headers.length; i++) {
+                        Cell cell = headerRow.createCell(i);
+                        cell.setCellValue(headers[i]);
+                    }
                 }
 
-                try (FileOutputStream fileOut = new FileOutputStream(FILE_PATH, true)) {
-                    fileOut.write(data.toString().getBytes());
+                // Determine the starting row for new data
+                int rowCount = sheet.getLastRowNum();
+
+                // Populate rows with data from the database
+                while (resultSet.next()) {
+                    Row row = sheet.createRow(++rowCount);
+                    row.createCell(0).setCellValue(resultSet.getInt("EmployeeID"));
+                    row.createCell(1).setCellValue(resultSet.getString("FirstName"));
+                    row.createCell(2).setCellValue(resultSet.getString("LastName"));
+                    row.createCell(3).setCellValue(resultSet.getString("Email"));
+                    row.createCell(4).setCellValue(resultSet.getString("Phone"));
+                    row.createCell(5).setCellValue(resultSet.getDate("HireDate").toString());
+                    row.createCell(6).setCellValue(resultSet.getString("JobTitle"));
+                    row.createCell(7).setCellValue(resultSet.getBigDecimal("Salary").doubleValue());
+                    row.createCell(8).setCellValue(resultSet.getString("DepartmentName"));
+                }
+
+                // Write workbook to file
+                try (FileOutputStream fileOut = new FileOutputStream(FILE_PATH)) {
+                    workbook.write(fileOut);
                 }
 
                 System.out.println("Export completed for request: " + requestId);

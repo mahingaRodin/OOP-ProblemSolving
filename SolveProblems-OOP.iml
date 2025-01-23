@@ -9,5 +9,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="MySQL Connector ODBC 9" level="project" />
     <orderEntry type="library" name="postgresql-42.7.4" level="project" />
+    <orderEntry type="library" name="java" level="project" />
+    <orderEntry type="library" name="poi-5.2.3" level="project" />
+    <orderEntry type="library" name="poi-ooxml-5.2.3" level="project" />
+    <orderEntry type="library" name="poi-ooxml-schemas-5.2.3" level="project" />
+    <orderEntry type="library" name="xmlbeans-5.1.1" level="project" />
+    <orderEntry type="library" name="github.y.yu.excel.reads.apache.poi_2.13" level="project" />
   </component>
 </module>
